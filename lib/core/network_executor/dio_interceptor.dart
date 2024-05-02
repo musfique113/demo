@@ -8,7 +8,7 @@ class DioInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.path = BaseUrl.baseUrl + options.path;
-    options.data ??= {};
+    options.data ??= <String, dynamic>{};
     // options.data['api_authentication'] = AppConfiguration.apiAuthentication;
     // options.headers.addAll({'Authorization': 'Bearer }'});
     options.validateStatus = (status) {
