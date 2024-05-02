@@ -1,6 +1,8 @@
-import 'package:demo/features/home/presentation/state_holders/test_data_controller.dart';
+import 'package:demo/features/home/presentation/state_holders/weather_data_controller.dart';
+import 'package:demo/features/home/presentation/ui/widgets/temprature_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gap/gap.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<TestDataController>().getEmployeeData();
+      Get.find<WeatherController>().getEmployeeData();
     });
   }
 
@@ -24,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Demo app'),
       ),
-      body: GetBuilder<TestDataController>(
+      body: GetBuilder<WeatherController>(
         builder: (testDataController) {
           if (testDataController.inProgress) {
             return const Center(child: CircularProgressIndicator());
@@ -36,25 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text("This is a demo app on Repository Pattern"),
-                Text(testDataController.testData.message),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: testDataController.testData.data.length,
-                    shrinkWrap: true,
-                    primary: false,
-                    itemBuilder: (context, index) {
-                      final data = testDataController.testData.data[index];
-                      return ListTile(
-                        title: Text(data.employeeName),
-                        leading: Text(data.id.toString()),
-                        subtitle: Text(data.employeeSalary.toString()),
-                        trailing: CircleAvatar(
-                          child: Text(data.employeeAge.toString()),
-                        ),
-                      );
-                    },
-                  ),
-                )
+                const Gap(20),
+                TemperatureCard(main: testDataController.testData.main,)
               ],
             ),
           );
@@ -63,3 +48,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+

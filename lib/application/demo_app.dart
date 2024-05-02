@@ -1,6 +1,6 @@
 import 'package:demo/application/controller_binder.dart';
 import 'package:demo/application/theme_data/theme_data.dart';
-import 'package:demo/features/home/presentation/ui/home_screen.dart';
+import 'package:demo/features/home/presentation/ui/weather_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

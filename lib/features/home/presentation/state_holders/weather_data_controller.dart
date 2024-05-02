@@ -1,20 +1,20 @@
 import 'package:demo/core/domain/entites/failure.dart';
 import 'package:demo/features/home/data/repositories/test_repo.dart';
-import 'package:demo/features/home/domain/entities/test_data.dart';
+import 'package:demo/features/home/domain/entities/weather_data.dart';
 import 'package:get/get.dart';
 
-class TestDataController extends GetxController {
-  final TestRepository _testRepository;
+class WeatherController extends GetxController {
+  final WeatherRepository _testRepository;
 
-  TestDataController(this._testRepository);
+  WeatherController(this._testRepository);
 
   bool _inProgress = true;
-  late TestData _testData;
+  late WeatherData _weatherData;
   late Failure _failure;
 
   bool get inProgress => _inProgress;
 
-  TestData get testData => _testData;
+  WeatherData get testData => _weatherData;
 
   Failure get error => _failure;
 
@@ -23,17 +23,15 @@ class TestDataController extends GetxController {
     _inProgress = true;
     update();
 
-    final response = await _testRepository.getEmployeeData();
+    final response = await _testRepository.getWeatherData();
     await response.fold((error) {
       _failure = error;
-    }, (employeeData) async {
-      _testData = employeeData;
+    }, (weatherData) async {
+      _weatherData = weatherData;
       isSuccess = true;
     });
     _inProgress = false;
     update();
     return isSuccess;
   }
-
 }
-
