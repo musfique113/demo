@@ -1,8 +1,10 @@
 import 'package:demo/features/home/presentation/state_holders/weather_data_controller.dart';
 import 'package:demo/features/home/presentation/ui/widgets/temprature_card.dart';
+import 'package:demo/features/weather_forcast/presentation/state_holders/weather_forecast_controller.dart';
+import 'package:demo/features/weather_forcast/presentation/ui/weather_forecast_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,7 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const Text("This is a demo app on Repository Pattern"),
                 const Gap(20),
-                TemperatureCard(main: testDataController.testData.main,)
+                ElevatedButton(
+                    onPressed: _onTapGoToForecastButton,
+                    child: const Text('Show forecast')),
+                TemperatureCard(
+                  main: testDataController.testData.main,
+                )
               ],
             ),
           );
@@ -47,6 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  _onTapGoToForecastButton() {
+    Get.to(const WeatherForecastScreen());
+  }
 }
-
-
