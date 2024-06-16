@@ -71,6 +71,33 @@ A successful addition of a new feature will generate output similar to this:
   created lib\features\product\presentation\ui\widgets\product_widgets.dart
 ```
 
+### 🛑 How to remove brick directory's warning in Android Studio and VS Code
+
+#### ℹ️ Android Studio
+
+You can right-click on the directory that you need to hide and select:
+
+```
+Mark Directory as -> Excluded
+```
+
+If you want to include a directory back, find the path of your excluded directory and:
+
+```
+Right-click -> Mark Directory as -> Cancel Exclusion
+```
+![how-to-remove-error-warning-in-android-studio][demo_video]
+
+#### ℹ️ VS-Code
+Add this code:
+```json
+"dart.analysisExcludedFolders": [
+    "bricks"
+]
+```
+in `settings.json` in VS Code to ignore the `bricks` folder.
+
 [dart_installation_link]: https://dart.dev/get-dart
 [mason_cli_link]: https://github.com/felangel/mason/tree/master/packages/mason_cli
 [pub_dev_link]: https://pub.dev
+[demo_video]: https://github.com/musfique113/demo/assets/53111065/1e5276ad-5d21-4ee1-b50b-d5fea348f208
